@@ -1,0 +1,194 @@
+#header {
+    font-family: sans-serif;
+    background-color: rgb(66, 75, 190);
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+#information {
+    margin-bottom: 20px;
+}
+/* Селектор псевдоэлемента*/
+#information::first-line {
+    font-size: 24px;
+    letter-spacing: 4px;
+    line-height: 55px;
+}
+.big-text {
+    color: #151212;
+    font-size: 24px;
+    text-align: center;
+    font-family: fantasy;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* Селектор дочерних элементов*/
+div > img {
+    margin: auto;
+    display: block;
+
+}
+
+#kittenImg {
+    animation: scaleAnimation 5s infinite alternate;
+}
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale3d(0%, 0%, 0%); /* начальное значение масштаба по горизонтали */
+    }
+    100% {
+        transform: scale3d(100%, 100%, 100%); /* конечное значение масштаба по горизонтали */
+    }
+}
+
+.centered-button {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    height: 10vh; /* Высота вьюпорта для вертикального центрирования */
+}
+
+.coordinate {
+    font-weight: bolder;
+}
+/* Селектор атрибутов*/
+input[type="radio"] {
+    margin-right: 5px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #424bbe;
+    border-radius: 50%;
+    margin-top: 0.2%;
+    background-color: #f2f2f2;
+    transition: border-color 0.2s ease-in-out; /* Плавное изменение цвета границы при выборе */
+}
+input[type="radio"]:checked {
+    border-color: #3398fd;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 3px solid #424bbe;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f8f8f8;
+    margin-top: 0.2%;
+    transition: border-color 0.2s ease-in-out; /* Плавное изменение цвета границы при фокусировке */
+}
+input[type="text"]:focus {
+    border-color: #3398fd;
+    outline: none; /* Убирает стандартное подчеркивание в Chrome */
+}
+form {
+    font-size: 18px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #333;
+    margin-top: 25px;
+    background-color: rgba(255, 165, 0, 0.84);
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+select {
+    padding: 10px;
+    border: 3px solid #424bbe;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f8f8f8;
+    margin-top: 0.2%;
+    appearance: none; /* Убирает стандартные стили браузера для выпадающего списка */
+    width: 220px;
+}
+select:focus {
+    border-color: #3398fd;
+    outline: none;
+}
+option {
+    font-size: 18px;
+    color: #333;
+    background-color: #f8f8f8;
+}
+button {
+    padding: 10px 20px;
+    border: 3px solid #424bbe;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+
+/* Стиль при наведении курсора на кнопку */
+button:hover {
+    background-color: #3398fd;
+    color: white;
+}
+
+/* Стиль при нажатии на кнопку */
+button:active {
+    background-color: #ff334b;
+    border-color: #ff334b;
+}
+.error {
+    display: none; /* Изначально скрываем элемент */
+    position: fixed; /* Фиксированная позиция на экране */
+    top: 50%; /* Располагаем сверху на 50% экрана */
+    left: 50%; /* Располагаем слева на 50% экрана */
+    transform: translate(-50%, -50%); /* Центрируем элемент по горизонтали и вертикали */
+    background-color: #fd334a; /* Цвет фона (красный) */
+    color: #ffffff; /* Цвет текста (белый) */
+    padding: 10px; /* Внутренний отступ */
+    border: 1px solid #fd334a; /* Граница */
+    border-radius: 5px; /* Закругленные углы */
+    z-index: 9999; /* Устанавливаем высокий z-index для поверхности */
+}
+.message {
+    display: none; /* Изначально скрываем элемент */
+    position: fixed; /* Фиксированная позиция на экране */
+    top: 50%; /* Располагаем сверху на 50% экрана */
+    left: 50%; /* Располагаем слева на 50% экрана */
+    transform: translate(-50%, -50%); /* Центрируем элемент по горизонтали и вертикали */
+    background-color: rgba(51, 152, 253, 0.80); /* Цвет фона (красный) */
+    color: #ffffff; /* Цвет текста (белый) */
+    padding: 10px; /* Внутренний отступ */
+    border: 3px solid rgb(65, 74, 189); /* Граница */
+    border-radius: 5px; /* Закругленные углы */
+    z-index: 9999; /* Устанавливаем высокий z-index для поверхности */
+}
+/* Стили для контейнера таблицы */
+.blured-container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для таблицы */
+#result-table {
+    font-family: sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    table-layout: fixed;
+}
+
+/* Стили для заголовков таблицы */
+#result-table thead th {
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: #414abd;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
