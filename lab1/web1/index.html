@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>First lab</title>
+    <style>
+        #header {
+            font-family: sans-serif;
+            background-color: rgb(66, 75, 190);
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+        }
+        #information {
+            margin-bottom: 20px;
+        }
+
+        #areaImg {
+            height: 250px;
+            width: 250px;
+        }
+
+        #kittenImg {
+            height: 129px;
+            width: 120px;
+        }
+
+        /* Селектор псевдоэлемента*/
+        #information::first-line {
+            font-size: 24px;
+            letter-spacing: 4px;
+            line-height: 55px;
+        }
+
+        .big-text {
+            color: #151212;
+            font-size: 24px;
+            text-align: center;
+            font-family: fantasy;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Селектор дочерних элементов*/
+        div > img {
+            margin: auto;
+            display: block;
+        }
+
+        #kittenImg {
+            animation: scaleAnimation 5s infinite alternate;
+        }
+
+        @keyframes scaleAnimation {
+            0% {
+                transform: scale3d(0%, 0%, 0%);
+            }
+            100% {
+                transform: scale3d(100%, 100%, 100%);
+            }
+        }
+
+        .centered-button {
+            display: flex;
+            justify-content: center; /* Центрирование по горизонтали */
+            align-items: center; /* Центрирование по вертикали */
+            height: 10vh;
+            margin-top: 1%;
+            margin-bottom: 1%;
+        }
+
+        .coordinate {
+            font-weight: bolder;
+        }
+
+        /* Селектор атрибутов*/
+        input[type="radio"] {
+            margin-right: 5px;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #424bbe;
+            border-radius: 50%;
+            margin-top: 0.2%;
+            background-color: #f2f2f2;
+            transition: border-color 0.2s ease-in-out; /* Плавное изменение цвета границы при выборе */
+        }
+
+        input[type="radio"]:checked {
+            border-color: #3398fd;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 3px solid #424bbe;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f8f8f8;
+            margin-top: 0.2%;
+            transition: border-color 0.2s ease-in-out; /* Плавное изменение цвета границы при фокусировке */
+        }
+
+        input[type="text"]:focus {
+            border-color: #3398fd;
+            outline: none; /* Убирает стандартное подчеркивание */
+        }
+
+        form {
+            font-size: 18px;
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 25px;
+            background-color: rgba(255, 165, 0, 0.84);
+            border-radius: 20px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        select {
+            padding: 10px;
+            border: 3px solid #424bbe;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f8f8f8;
+            margin-top: 0.2%;
+            margin-bottom: 0.5%;
+            appearance: none; /* Убирает стандартные стили */
+            width: 220px;
+        }
+
+        /* Селектор псевдокласса*/
+        select:focus {
+            border-color: #3398fd;
+            outline: none;
+        }
+
+        option {
+            font-size: 18px;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: 3px solid #424bbe;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #333;
+            background-color: #f8f8f8;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+        }
+
+        /* Стиль при наведении курсора на кнопку */
+        button:hover {
+            background-color: #3398fd;
+            color: white;
+        }
+
+        /* Стиль при нажатии на кнопку */
+        button:active {
+            background-color: #ff334b;
+            border-color: #ff334b;
+        }
+
+        .message {
+            display: none;
+            position: fixed; /* Фикс позиция на экране */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Центрируем элемент по горизонтали и вертикали */
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+
+        #errorMessage {
+            background-color: #fd334a;
+            color: #ffffff;
+            border: 1px solid #fd334a;
+        }
+
+        #resultMessage {
+            background-color: rgba(51, 152, 253, 0.80);
+            color: #ffffff;
+            border: 3px solid rgb(65, 74, 189);
+        }
+
+        /* Стили для контейнера таблицы */
+        .blured-container {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Стили для таблицы */
+        #result-table {
+            font-family: sans-serif;
+            text-align: center;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            table-layout: fixed;
+        }
+
+        /* Стили для заголовков таблицы */
+        #result-table thead th {
+            border-radius: 10px;
+            border: 1px solid #fff;
+            background-color: #414abd;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div id="header">
+    <img src="pictures/kitten.png"
+         id="kittenImg"
+         alt="Kitten">
+    <section id="information">
+        <strong>Грибич Елизавета Дмитриевна</strong>
+        <br>
+        <small>Группа: P3224<br>Вариант: 3402</small>
+    </section>
+</div>
+
+<div id="main">
+    <div class="big-text">
+        Попробуй попасть в выделенную область!
+    </div>
+    <img id="areaImg"
+         src="pictures/area.png"
+         alt="Area">
+
+    <form>
+        <p class="coordinate">Изменениe X</p>
+        <input type="radio" id="radio1" name="X" value="-2">
+        <label for="radio1">-2</label>
+        <input type="radio" id="radio2" name="X" value="-1.5">
+        <label for="radio2">-1.5</label>
+        <input type="radio" id="radio3" name="X" value="-1">
+        <label for="radio3">-1</label>
+        <input type="radio" id="radio4" name="X" value="-0.5">
+        <label for="radio4">-0.5</label>
+        <input type="radio" id="radio5" name="X" value="0">
+        <label for="radio5">0</label>
+        <input type="radio" id="radio6" name="X" value="0.5">
+        <label for="radio6">0.5</label>
+        <input type="radio" id="radio7" name="X" value="1">
+        <label for="radio7">1</label>
+        <input type="radio" id="radio8" name="X" value="1.5">
+        <label for="radio8">1.5</label>
+        <input type="radio" id="radio9" name="X" value="2">
+        <label for="radio9">2</label>
+
+        <p class="coordinate">Изменениe Y</p>
+        <input type="text" id="inputY" name="Y" placeholder="Значение от -3 до 5">
+
+        <p class="coordinate">Изменениe R</p>
+        <select name="R" id="inputR">
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.5">2.5</option>
+            <option value="3">3</option>
+        </select>
+        <span id="errorMessage" class="message"></span>
+        <span id="resultMessage" class="message"></span>
+
+    </form>
+    <div class="centered-button">
+        <button class="big-text" id="checkButton">Нажми меня</button>
+    </div>
+
+    <div id="result-table-container" class="blured-container margin">
+        <table id="result-table">
+            <thead>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Result</th>
+                <th>Executed at</th>
+                <th>Execution time, 10^-4 с</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<script src="./bundle.js"></script>
+
+</body>
+</html>
