@@ -1,10 +1,4 @@
 import { showMessage } from './validation.js';
-import BigNumber from 'bignumber.js';
-// todo do not delete all table
-//done
-
-// todo srp
-//done
 function fillTheTable(response) {
     let data = JSON.parse(response);
     let table = document.getElementById("result-table");
@@ -31,7 +25,7 @@ function trim(s, amount) {
 
     let parts = s.split('.');
     if (parts.length < 2) {
-        return s; // нет десятичной части
+        return s;
     }
     return parts[0] + '.' + parts[1].substring(0, amount);
 }
@@ -62,11 +56,8 @@ function addRow(table, data) {
 }
 
 
-// todo window.addEventListener (event)
-// done
 window.addEventListener('load', function () {
-    fetch("https://se.ifmo.ru/~s368051/lab1/web1/backend/send.php")
-
+    fetch("/web1/backend/send.php")
         .then(response => {
             if (!response.ok) {
                 throw new Error('Ошибка: ' + response.status);

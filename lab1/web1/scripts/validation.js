@@ -58,7 +58,7 @@ button.addEventListener("click", function () {
         let y = getY();
         let R = getR();
 
-        fetch(`https://se.ifmo.ru/~s368051/lab1/web1/backend/hit.php?x=${x}&y=${y}&R=${R}`)
+        fetch(`/web1/backend/hit.php?x=${x}&y=${y}&R=${R}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Ошибка: ' + response.status);

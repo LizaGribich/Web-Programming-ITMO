@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 function isInsideArea($x, $y, $r): bool
 {
     $x = floatval($x);
@@ -22,21 +19,18 @@ function isInsideArea($x, $y, $r): bool
     return false;
 }
 
+
 function stringNumberCompare($a, $b): int {
     $a_parts = explode('.', $a);
     $b_parts = explode('.', $b);
-
     if ($a_parts[0] != $b_parts[0]) {
         return $a_parts[0] > $b_parts[0] ? 1 : -1;
-    } elseif (isset($a_parts[1]) && isset($b_parts[1])) {
-        return strlen($a_parts[1]) > strlen($b_parts[1]) ? 1 : (strlen($a_parts[1]) < strlen($b_parts[1]) ? -1 : strcmp($a_parts[1], $b_parts[1]));
     } elseif (isset($a_parts[1])) {
         return 1;
-    } elseif (isset($b_parts[1])) {
-        return -1;
     }
     return 0;
 }
+
 
 function validateData($x, $y, $r): bool {
     $validXValues = ["-2", "-1.5", "-1", "-0.5", "0", "0.5", "1", "1.5", "2"];
@@ -47,9 +41,6 @@ function validateData($x, $y, $r): bool {
         stringNumberCompare($y, "5") == -1 &&
         in_array($r, $validRValues);
 }
-
-
-
 
 $start_time = microtime(true);
 ini_set('session.gc_maxlifetime', 1800);
