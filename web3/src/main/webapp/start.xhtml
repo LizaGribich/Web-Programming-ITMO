@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <link rel="stylesheet" href="css/stylesStart.css"/>
+</h:head>
+
+<h:body>
+    <h:panelGroup styleClass="header" layout="block">
+        <h:panelGroup layout="block" id="information">
+            <h:outputText id="name" value="Грибич Елизавета Дмитриевна"  />
+            <br/>
+            <h:outputText id="group" value="Группа: P3224"  />
+            <br/>
+            <h:outputText id="var" value="Вариант: 151698" />
+        </h:panelGroup>
+    </h:panelGroup>
+    <h:outputText id="clock" styleClass="clock"/>
+    <h:form styleClass="formButton">
+        <h:commandButton styleClass="button" value="Вперёд" action="toIndex" />
+    </h:form>
+
+
+</h:body>
+
+<script type="text/javascript">
+    function updateClock() {
+        let now = new Date();
+        let timeString = now.toLocaleTimeString();
+        let dateString = now.toLocaleDateString();
+
+        document.getElementById('clock').innerHTML = dateString + ' ' + timeString;
+    }
+
+    setInterval(updateClock, 13000); // Обновление раз в 13 секунд
+
+    window.onload = updateClock; // Установка начального времени при загрузке
+</script>
+
+</html>

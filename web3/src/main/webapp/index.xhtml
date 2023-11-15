@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Third lab</title>
+    <script type="module" src="./bundle.js"></script>
+    <link rel="stylesheet" href="css/stylesIndex.css"/>
+</h:head>
+
+<h:body>
+    <div id="main">
+        <div id="leftPanel" class="panel">
+        <svg id="interactiveArea" width="350" height="350" style="border: 1px solid black;">
+            <!-- Четверть круга в верхнем правом углу -->
+            <path d="M 175 175 L 257.5 175 A 82.5 82.5 0 0 0 175 92.5 Z" fill="lightblue"/>
+
+            <!-- Прямоугольник в нижнем левом углу -->
+            <rect x="10" y="175" width="165" height="165" fill="lightblue"/>
+
+            <!-- Треугольник в нижнем правом углу -->
+            <polygon points="92.5,175 175,10 175,175" fill="lightblue"/>
+
+            <!-- Фоновая сетка и оси -->
+            <line x1="175" y1="0" x2="175" y2="350" stroke="black"/>
+            <line x1="0" y1="175" x2="350" y2="175" stroke="black"/>
+
+            <!-- Засечки на оси X -->
+            <line x1="10" y1="170" x2="10" y2="180" stroke="black"/>
+            <text id="x-negative-R" x="10" y="192" text-anchor="middle" font-size="9px">-R</text>
+
+            <line x1="92.5" y1="170" x2="92.5" y2="180" stroke="black"/>
+            <text id="x-half-negative-R" x="92.5" y="192" text-anchor="middle" font-size="9px">-R/2</text>
+
+            <line x1="257.5" y1="170" x2="257.5" y2="180" stroke="black"/>
+            <text id="x-half-R" x="257.5" y="192" text-anchor="middle" font-size="9px">R/2</text>
+
+            <line x1="340" y1="170" x2="340" y2="180" stroke="black"/>
+            <text id="x-R" x="340" y="192" text-anchor="middle" font-size="9px">R</text>
+
+            <!-- Засечки на оси Y -->
+            <line x1="170" y1="10" x2="180" y2="10" stroke="black"/>
+            <text id="y-R" x="158" y="10" text-anchor="end" alignment-baseline="middle" font-size="9px">R</text>
+
+            <line x1="170" y1="92.5" x2="180" y2="92.5" stroke="black"/>
+            <text id="y-half-R" x="158" y="92.5" text-anchor="end" alignment-baseline="middle" font-size="9px">R/2
+            </text>
+
+            <line x1="170" y1="257.5" x2="180" y2="257.5" stroke="black"/>
+            <text id="y-half-negative-R" x="158" y="257.5" text-anchor="end" alignment-baseline="middle"
+                  font-size="9px">-R/2
+            </text>
+
+            <line x1="170" y1="340" x2="180" y2="340" stroke="black"/>
+            <text id="y-negative-R" x="158" y="340" text-anchor="end" alignment-baseline="middle" font-size="9px">-R
+            </text>
+        </svg>
+
+        <h:form>
+
+            <p:outputLabel value="Изменение X" for="xValue"/>
+            <p:slider widgetVar="xSlider" for="xValue" minValue="-4" maxValue="4" step="1"/>
+            <p:inputText id="xValue" value="#{hitBean.x}"/>
+            <br></br>
+
+            <p:outputLabel value="Изменение Y"/>
+            <h:inputText value="#{hitBean.y}" id="yValue"/>
+            <br></br>
+
+
+            <p:outputLabel value="Изменение R" for="rValue"/>
+            <p:slider for="rValue" minValue="1" maxValue="4" step="0.25" onSlideEnd="sliderMoveR()"/>
+            <p:inputText id="rValue" value="#{hitBean.r}"/>
+            <br></br>
+
+            <p:commandButton id="checkButton" styleClass="button" value="Нажми меня" action="#{hitBean.checkHit()}"
+                             onclick="return validateForm();"
+                             update="hitsTable" oncomplete="plotPointsFromTable();"/>
+
+            <p:remoteCommand name="sendHit" action="#{hitBean.checkHit()}"
+                             update="hitsTable" oncomplete="plotPointsFromTable()"/>
+        </h:form>
+
+        <h:outputText id="errorMessage" styleClass="message"/>
+
+        <h:form>
+            <h:commandButton id="backButton" styleClass="button" value="Назад" action="toStart"/>
+        </h:form>
+        </div>
+        <div id="rightPanel" class="panel">
+        <p:dataTable id="hitsTable" var="hit" value="#{hitBean.hits}">
+            <p:column headerText="X">
+                <h:outputText value="#{hit.x}"/>
+            </p:column>
+            <p:column headerText="Y">
+                <h:outputText value="#{hit.y}"/>
+            </p:column>
+            <p:column headerText="R">
+                <h:outputText value="#{hit.r}"/>
+            </p:column>
+            <p:column headerText="RESULT">
+                <h:outputText value="#{hit.result}"/>
+            </p:column>
+        </p:dataTable>
+        </div>
+
+    </div>
+
+</h:body>
+</html>

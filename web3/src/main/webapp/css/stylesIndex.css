@@ -1,0 +1,89 @@
+/* Общий стиль для страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Стилизация основного контейнера */
+#main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Стилизация панелей */
+.panel {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+}
+
+.button {
+    background-color: #007bff; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none;
+    padding: 10px 20px;
+    margin: 4px 2px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Стили для расположения кнопок рядом */
+#checkButton, #backButton {
+    display: inline-block; /* Расположение кнопок в одной линии */
+    margin-right: 10px; /* Отступ справа от первой кнопки */
+}
+
+/* Стиль, чтобы убедиться, что обе кнопки имеют одинаковый вид */
+#checkButton, #backButton {
+    width: 100px; /* Одинаковая ширина */
+    background-color: #007bff; /* Одинаковый цвет фона */
+    color: white; /* Одинаковый цвет текста */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Стилизация полей формы */
+input[type="text"], .ui-slider {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Стилизация меток (labels) */
+label {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+
+.message {
+    display: none;
+    position: fixed; /* Фикс позиция на экране */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрируем элемент по горизонтали и вертикали */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 9999;
+}
+
+#errorMessage {
+    background-color: #fd334a;
+    color: #ffffff;
+    border: 1px solid #fd334a;
+}
