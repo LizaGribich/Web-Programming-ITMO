@@ -54,13 +54,13 @@ public class Hit {
         BigDecimal halfR = new BigDecimal(r).divide(new BigDecimal(2));
 
         this.result =
-                // Проверка попадания в треугольник в верхнем левом углу
+                // треугольник в верхнем левом углу
                 (x <= 0 && y.compareTo(BigDecimal.ZERO) >= 0 && y.compareTo(rBigDecimal.add(BigDecimal.valueOf(x).multiply(new BigDecimal(2)))) <= 0)
                         ||
-                        // Проверка попадания в четверть круга в верхнем правом углу
+                        // четверть круга в верхнем правом углу
                         (x >= 0 && y.compareTo(BigDecimal.ZERO) >= 0 && (xSquare.add(ySquare).compareTo(halfR.pow(2)) <= 0))
                         ||
-                        // Проверка попадания в квадрат в нижнем левом углу
+                        // квадрат в нижнем левом углу
                         (x <= 0 && y.compareTo(BigDecimal.ZERO) <= 0 && BigDecimal.valueOf(x).compareTo(rBigDecimal.negate()) >= 0 && y.compareTo(rBigDecimal.negate()) >= 0);
 
     }

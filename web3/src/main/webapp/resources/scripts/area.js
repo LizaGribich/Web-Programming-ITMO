@@ -97,6 +97,7 @@ export function sliderMoveR() {
 window.addEventListener('load', function () {
     changeRValuesSVG();
     plotPointsFromTable();
+    console.log("load")
 });
 
 document.addEventListener('DOMContentLoaded', function () {

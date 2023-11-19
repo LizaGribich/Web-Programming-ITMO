@@ -1,4 +1,3 @@
-/* Общий стиль для страницы */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,14 +6,12 @@ body {
     color: #333;
 }
 
-/* Стилизация основного контейнера */
 #main {
     display: flex;
     justify-content: space-around;
     padding: 20px;
 }
 
-/* Стилизация панелей */
 .panel {
     background-color: #fff;
     border-radius: 10px;
@@ -24,8 +21,8 @@ body {
 }
 
 .button {
-    background-color: #007bff; /* Цвет фона */
-    color: white; /* Цвет текста */
+    background-color: #8a65f8;
+    color: white;
     border: none;
     padding: 10px 20px;
     margin: 4px 2px;
@@ -34,26 +31,15 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100px;
+    display: inline-block;
 }
 
-/* Стили для расположения кнопок рядом */
-#checkButton, #backButton {
-    display: inline-block; /* Расположение кнопок в одной линии */
-    margin-right: 10px; /* Отступ справа от первой кнопки */
-}
-
-/* Стиль, чтобы убедиться, что обе кнопки имеют одинаковый вид */
-#checkButton, #backButton {
-    width: 100px; /* Одинаковая ширина */
-    background-color: #007bff; /* Одинаковый цвет фона */
-    color: white; /* Одинаковый цвет текста */
-}
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #6a65f8;
 }
 
-/* Стилизация полей формы */
 input[type="text"], .ui-slider {
     width: 100%;
     padding: 8px;
@@ -64,19 +50,25 @@ input[type="text"], .ui-slider {
     box-sizing: border-box;
 }
 
-/* Стилизация меток (labels) */
 label {
     margin-bottom: 5px;
     display: inline-block;
 }
 
+.button-container {
+    display: flex;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.button {
+    width: 206px; /* Используйте !important, чтобы переопределить стили PrimeFaces */
+}
 
 .message {
     display: none;
-    position: fixed; /* Фикс позиция на экране */
+    position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Центрируем элемент по горизонтали и вертикали */
+    transform: translate(-50%, -50%);
     padding: 10px;
     border-radius: 5px;
     z-index: 9999;

@@ -26,8 +26,11 @@ function getY() {
 
 export function checkR() {
     let inputValue = document.getElementById('j_idt6:rValue').value;
-    return inputValue && inputValue >= 1 && inputValue <= 4;
+    const validValues = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4];
+    inputValue = parseFloat(inputValue);
+    return inputValue && validValues.includes(inputValue);
 }
+
 
 export function getR() {
     let inputValue = document.getElementById('j_idt6:rValue').value;

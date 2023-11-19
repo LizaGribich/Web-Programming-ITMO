@@ -3,11 +3,12 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
 
-      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Third lab</title>
-    <script type="module" src="./bundle.js"></script>
+    <script type="module" src="./bundle.js"/>
     <link rel="stylesheet" href="css/stylesIndex.css"/>
 </h:head>
 
@@ -16,13 +17,13 @@
         <div id="leftPanel" class="panel">
         <svg id="interactiveArea" width="350" height="350" style="border: 1px solid black;">
             <!-- Четверть круга в верхнем правом углу -->
-            <path d="M 175 175 L 257.5 175 A 82.5 82.5 0 0 0 175 92.5 Z" fill="lightblue"/>
+            <path d="M 175 175 L 257.5 175 A 82.5 82.5 0 0 0 175 92.5 Z" fill="#c2b3fc"/>
 
             <!-- Прямоугольник в нижнем левом углу -->
-            <rect x="10" y="175" width="165" height="165" fill="lightblue"/>
+            <rect x="10" y="175" width="165" height="165" fill="#c2b3fc"/>
 
             <!-- Треугольник в нижнем правом углу -->
-            <polygon points="92.5,175 175,10 175,175" fill="lightblue"/>
+            <polygon points="92.5,175 175,10 175,175" fill="#c2b3fc"/>
 
             <!-- Фоновая сетка и оси -->
             <line x1="175" y1="0" x2="175" y2="350" stroke="black"/>
@@ -76,33 +77,42 @@
             <p:inputText id="rValue" value="#{hitBean.r}"/>
             <br></br>
 
-            <p:commandButton id="checkButton" styleClass="button" value="Нажми меня" action="#{hitBean.checkHit()}"
-                             onclick="return validateForm();"
-                             update="hitsTable" oncomplete="plotPointsFromTable();"/>
-
+            <p:commandButton id="checkButton" styleClass="button" value="Выстрел"
+                             onclick="if(validateForm()) sendHit(); return false;"/>
             <p:remoteCommand name="sendHit" action="#{hitBean.checkHit()}"
                              update="hitsTable" oncomplete="plotPointsFromTable()"/>
+            <br></br>
+
         </h:form>
 
         <h:outputText id="errorMessage" styleClass="message"/>
+
+        <p:remoteCommand name="updateTablepls" update="hitsTable" oncomplete="plotPointsFromTable()"/>
+        <o:socket channel="notify" onmessage="updateTablepls" />
+        <div class="button-container">
+        <h:form>
+            <h:commandButton id="clearButton" styleClass="button" value="Очистить" action="#{hitBean.cleanDataBase()}"/>
+        </h:form>
 
         <h:form>
             <h:commandButton id="backButton" styleClass="button" value="Назад" action="toStart"/>
         </h:form>
         </div>
+
+        </div>
         <div id="rightPanel" class="panel">
-        <p:dataTable id="hitsTable" var="hit" value="#{hitBean.hits}">
+        <p:dataTable id="hitsTable" var="hitResult" widgetVar="widgetTable" value="#{hitBean.hits}">
             <p:column headerText="X">
-                <h:outputText value="#{hit.x}"/>
+                <h:outputText value="#{hitResult.x}"/>
             </p:column>
             <p:column headerText="Y">
-                <h:outputText value="#{hit.y}"/>
+                <h:outputText value="#{hitResult.y}"/>
             </p:column>
             <p:column headerText="R">
-                <h:outputText value="#{hit.r}"/>
+                <h:outputText value="#{hitResult.r}"/>
             </p:column>
             <p:column headerText="RESULT">
-                <h:outputText value="#{hit.result}"/>
+                <h:outputText value="#{hitResult.result}"/>
             </p:column>
         </p:dataTable>
         </div>
