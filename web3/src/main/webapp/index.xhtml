@@ -89,6 +89,7 @@
 
         <p:remoteCommand name="updateTablepls" update="hitsTable" oncomplete="plotPointsFromTable()"/>
         <o:socket channel="notify" onmessage="updateTablepls" />
+
         <div class="button-container">
         <h:form>
             <h:commandButton id="clearButton" styleClass="button" value="Очистить" action="#{hitBean.cleanDataBase()}"/>

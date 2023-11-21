@@ -64,7 +64,6 @@ public class HitBean implements Serializable {
     }
 
     public void sendData() {
-        hits = hitResultService.getAllResults();
         pushContext.send("update");
     }
 
@@ -80,10 +79,12 @@ public class HitBean implements Serializable {
         hitResult.setResult(hit.getResult());
         try {
             hitResultService.saveHitResult(hitResult);
+            hits.add(0, hitResult);
         } catch (OutOfMemoryError e) {
             hitResultService.clearDatabase();
 
             hitResultService.saveHitResult(hitResult);
+            hits.add(0, hitResult);
         }
         sendData();
 
@@ -91,6 +92,7 @@ public class HitBean implements Serializable {
 
     public void cleanDataBase() {
         hitResultService.clearDatabase();
+        hits.clear();
         sendData();
     }
 }
