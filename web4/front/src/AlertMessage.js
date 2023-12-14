@@ -17,7 +17,7 @@ const AlertMessage = ({ message }) => {
     if (!visible) return null;
 
     return (
-        <div style={{ position: 'fixed', top: '10%', left: '50%', transform: 'translateX(-50%)', zIndex: 1000, backgroundColor: '#ffcc00', padding: '10px', borderRadius: '5px' }}>
+        <div style={{ position: 'fixed', top: '10%', left: '50%', transform: 'translateX(-50%)', zIndex: 1000, backgroundColor: '#ff0062', padding: '10px', borderRadius: '5px' }}>
             {message}
         </div>
     );

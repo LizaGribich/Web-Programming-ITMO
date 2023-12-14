@@ -15,6 +15,9 @@ const LoginPage = ({onLogin }) => {
         }, 10); // Маленькая задержка, чтобы гарантировать, что React обновит состояние
     };
 
+
+
+
     const handleLogin = async () => {
         const response = await fetch('http://localhost:8080/web4/api/auth/login', {
             method: 'POST',
@@ -35,6 +38,10 @@ const LoginPage = ({onLogin }) => {
     };
 
     const handleRegister = async () => {
+        if(password.length < 4 || username.length < 4) {
+            showError('Логин и пароль должны содержать не менее 4 символов');
+            return;
+        }
         const response = await fetch('http://localhost:8080/web4/api/auth/register', {
             method: 'POST',
             headers: {

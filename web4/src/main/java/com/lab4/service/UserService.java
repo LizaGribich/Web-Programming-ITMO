@@ -73,6 +73,13 @@ public class UserService {
         }
     }
 
+    public boolean validateСredentials(String username, String password) {
+        if (password == null || password.length() < 4 || username == null || username.length() < 4 ) {
+            return false;
+        }
+        return true;
+    }
+
 
 }
 

@@ -12,17 +12,19 @@ public class HitResult implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double x;
+    private BigDecimal x;
     private BigDecimal y;
-    private double r;
+    private BigDecimal r;
     private boolean result;
+    private String currentTime;
+    private double executionTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
 
-    public void setX(double x) {
+    public void setX(BigDecimal x) {
         this.x = x;
     }
 
@@ -30,15 +32,21 @@ public class HitResult implements Serializable {
         this.y = y;
     }
 
-    public void setR(double r) {
+    public void setR(BigDecimal r) {
         this.r = r;
     }
 
     public void setResult(boolean result) {
         this.result = result;
     }
+    public void setCurrentTime(String currentTime) {
+        this.currentTime = currentTime;
+    }
+    public void setExecutionTime(double executionTime) {
+        this.executionTime = executionTime;
+    }
 
-    public double getX() {
+    public BigDecimal getX() {
         return x;
     }
 
@@ -46,7 +54,7 @@ public class HitResult implements Serializable {
         return y;
     }
 
-    public double getR() {
+    public BigDecimal getR() {
         return r;
     }
 
@@ -61,5 +69,11 @@ public class HitResult implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+    public String getCurrentTime() {
+        return currentTime;
+    }
 
+    public double getExecutionTime() {
+        return executionTime;
+    }
 }

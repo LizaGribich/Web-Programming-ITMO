@@ -45,8 +45,8 @@ const Area = ({data, currentR, handleAreaSubmit, showError}) => {
 
         return (
             <svg id="interactiveArea" onClick={handleClick} width="350" height="350" style={{ border: '1px solid black' }}>
-                    <path d="M 175 175 L 257.5 175 A 82.5 82.5 0 0 0 175 92.5 Z" fill="#c2b3fc"/>
-                    <rect x="10" y="175" width="165" height="165" fill="#c2b3fc"/>
+                <path d="M 175 175 L 257.5 175 A 82.5 82.5 0 0 1 175 257.5 Z" fill="#c2b3fc"/>
+                <rect x="92.5" y="175" width="82.5" height="165" fill="#c2b3fc"/>
                     <polygon points="92.5,175 175,10 175,175" fill="#c2b3fc"/>
                     <line x1="175" y1="0" x2="175" y2="350" stroke="black"/>
                     <line x1="0" y1="175" x2="350" y2="175" stroke="black"/>

@@ -9,6 +9,8 @@ const DataTable = ({ data }) => {
                 <th>Y</th>
                 <th>R</th>
                 <th>Result</th>
+                <th>Current time</th>
+                <th>Execution time</th>
             </tr>
             </thead>
             <tbody>
@@ -18,6 +20,8 @@ const DataTable = ({ data }) => {
                     <td>{item.y}</td>
                     <td>{item.r}</td>
                     <td>{item.result.toString()}</td>
+                    <td>{item.currentTime}</td>
+                    <td>{item.executionTime}</td>
                 </tr>
             ))}
             </tbody>

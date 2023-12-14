@@ -48,6 +48,8 @@ public class HitController {
         hitResult.setR(hit.getR());
         hitResult.setResult(hit.getResult());
         hitResult.setUser(user);
+        hitResult.setCurrentTime(hit.getCurrentTime());
+        hitResult.setExecutionTime(hit.getExecutionTime());
 
         hitResultService.saveHitResult(hitResult, user);
         return Response.ok().entity(hitResult).build();
