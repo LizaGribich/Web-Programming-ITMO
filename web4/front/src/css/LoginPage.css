@@ -1,0 +1,86 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.input-field {
+    margin: 10px 0;
+    width: 300px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #d46bf1;
+    background-color: transparent;
+    font-size: 16px;
+    transition: border-bottom-color 0.3s;
+}
+
+.input-field input:focus {
+    outline: none;
+    border-bottom-color: #eecaf8;
+}
+
+.button {
+    background-color: #d46bf1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #eecaf8;
+}
+
+/* Стили для планшетных устройств (ширина экрана от 835px до 1194px) */
+@media screen and (min-width: 835px) and (max-width: 1194px) {
+    .input-field {
+        width: 250px;
+    }
+
+    .button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
+
+/* Стили для мобильных устройств (ширина экрана < 835px) */
+@media screen and (max-width: 834px) {
+    .login-page {
+        padding: 10px;
+    }
+
+    .input-field {
+        width: 100%;
+    }
+
+    .button {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+}
+

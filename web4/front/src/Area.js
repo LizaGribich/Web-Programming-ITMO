@@ -12,7 +12,7 @@ const Area = ({data, currentR, handleAreaSubmit, showError}) => {
     }, [data, currentR]);
 
     const transformPoint = (point) => {
-        if (!R || R < 0) {
+        if (!R || R <= 0) {
             return null;
         }
         const SCALE_COEFFICIENT = 2 * R / (SVG_SIZE - 20);

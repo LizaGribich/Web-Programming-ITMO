@@ -1,4 +1,4 @@
-
+import './css/Table.css';
 const DataTable = ({ data }) => {
 
     return (

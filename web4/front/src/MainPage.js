@@ -4,20 +4,32 @@ import DataTable from './DataTable';
 import Input from "react-toolbox/lib/input";
 import Area from "./Area";
 import AlertMessage from "./AlertMessage";
+import './css/MainPage.css';
 
 const MainPage = ({token, onLogout}) => {
 
-    const [x, setX] = useState('');
-    const [y, setY] = useState('');
-    const [r, setR] = useState('');
+    const [x, setX] = useState(localStorage.getItem('x') || '');
+    const [y, setY] = useState(localStorage.getItem('y') || '');
+    const [r, setR] = useState(localStorage.getItem('r') || '');
     const [errorMessage, setErrorMessage] = useState('');
 
     const [data, setData] = useState([]); // Состояние для хранения данных таблицы
 
+    useEffect(() => {
+        localStorage.setItem('x', x);
+    }, [x]);
+
+    useEffect(() => {
+        localStorage.setItem('y', y);
+    }, [y]);
+
+    useEffect(() => {
+        localStorage.setItem('r', r);
+    }, [r]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('http://localhost:8080/web4/api/hit/get', {
+            const response = await fetch('./web4/api/hit/get', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,7 +83,7 @@ const MainPage = ({token, onLogout}) => {
             return;
         }
         const hitData = {x, y, r};
-        const response = await fetch('http://localhost:8080/web4/api/hit/do', {
+        const response = await fetch('./web4/api/hit/do', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -89,7 +101,6 @@ const MainPage = ({token, onLogout}) => {
     };
 
     const handleAreaSubmit = async (x, y, R) => {
-        console.log(`Отправка точки с координатами: x=${x}, y=${y}, r=${R}`);
         const validationError = validateInput(x.toString(), y.toString(), r.toString());
         if (validationError) {
             console.error(validationError);
@@ -97,7 +108,7 @@ const MainPage = ({token, onLogout}) => {
             return;
         }
         const hitData = {x, y, r};
-        const response = await fetch('http://localhost:8080/web4/api/hit/do', {
+        const response = await fetch('./web4/api/hit/do', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -116,7 +127,7 @@ const MainPage = ({token, onLogout}) => {
 
 
     const handleClearData = async () => {
-        const response = await fetch('http://localhost:8080/web4/api/hit/clear', {
+        const response = await fetch('./web4/api/hit/clear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -133,19 +144,31 @@ const MainPage = ({token, onLogout}) => {
 
 
     return (
-        <div>
-            <h1>Основная страница</h1>
-            <Area data={data} currentR={r} handleAreaSubmit={handleAreaSubmit} showError={showError}/>
-            <form onSubmit={handleSubmit}>
-                <Input type="text" label="X" value={x} onChange={(value) => setX(value)}/>
-                <Input type="text" label="Y" value={y} onChange={(value) => setY(value)}/>
-                <Input type="text" label="R" value={r} onChange={(value) => setR(value)}/>
-                <AlertMessage message={errorMessage} />
-                <Button label="Отправить" type="submit"/>
-            </form>
-            <Button label="Очистить данные" onClick={handleClearData} />
-            <Button label="Выйти" onClick={onLogout}/>
-            <DataTable data={data}/>
+
+
+        <div className="main-page-container">
+            <div className="left-column">
+                <Area data={data} currentR={r} handleAreaSubmit={handleAreaSubmit} showError={showError}/>
+                <div className="form-container">
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="x">X</label>
+                        <Input className="input-field" type="text" value={x} onChange={(value) => setX(value)}/>
+                        <label htmlFor="y">Y</label>
+                        <Input className="input-field" type="text" value={y} onChange={(value) => setY(value)}/>
+                        <label htmlFor="r">R</label>
+                        <Input className="input-field" type="text" value={r} onChange={(value) => setR(value)}/>
+                        <AlertMessage message={errorMessage}/>
+                        <Button className="button" label="Отправить" type="submit"/>
+                    </form>
+                </div>
+                <div className="button-container">
+                    <Button className="button" label="Очистить данные" onClick={handleClearData}/>
+                    <Button className="button" label="Выйти" onClick={onLogout}/>
+                </div>
+            </div>
+            <div className="left-column">
+                <DataTable data={data}/>
+            </div>
         </div>
     );
 };

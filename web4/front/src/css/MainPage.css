@@ -1,0 +1,61 @@
+.main-page-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.right-column {
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow: auto;
+}
+
+.button {
+    background-color: #d46bf1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #eecaf8;
+}
+
+
+/* Стили для планшетных устройств (ширина экрана от 835px до 1194px) */
+@media screen and (min-width: 835px) and (max-width: 1194px) {
+    .main-page-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Стили для мобильных устройств (ширина экрана < 835px) */
+@media screen and (max-width: 834px) {
+    .main-page-container {
+        grid-template-columns: 1fr;
+    }
+
+    .left-column,
+    .right-column {
+        border: none;
+        padding: 5px;
+    }
+
+    .button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}

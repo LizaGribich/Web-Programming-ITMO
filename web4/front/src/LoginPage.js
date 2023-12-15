@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button } from 'react-toolbox/lib/button';
+import {Button} from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import AlertMessage from "./AlertMessage";
+import './css/LoginPage.css';
 
-const LoginPage = ({onLogin }) => {
+const LoginPage = ({onLogin}) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [errorMessage, setErrorMessage] = React.useState('');
@@ -16,15 +17,13 @@ const LoginPage = ({onLogin }) => {
     };
 
 
-
-
     const handleLogin = async () => {
-        const response = await fetch('http://localhost:8080/web4/api/auth/login', {
+        const response = await fetch('./api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({username, password}),
         });
 
         if (response.ok) {
@@ -38,16 +37,16 @@ const LoginPage = ({onLogin }) => {
     };
 
     const handleRegister = async () => {
-        if(password.length < 4 || username.length < 4) {
+        if (password.length < 4 || username.length < 4) {
             showError('Логин и пароль должны содержать не менее 4 символов');
             return;
         }
-        const response = await fetch('http://localhost:8080/web4/api/auth/register', {
+        const response = await fetch('./api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({username, password}),
         });
 
         if (response.ok) {
@@ -61,25 +60,32 @@ const LoginPage = ({onLogin }) => {
 
 
     return (
-        <div>
+        <div className="login-page">
             <h2>Грибич Елизавета Дмитриевна</h2>
             <h2>Группа: P3224</h2>
             <h2>Вариант: 412347</h2>
+            <div className="input-field">
             <Input
                 type="text"
                 label="Username"
                 value={username}
                 onChange={(value) => setUsername(value)}
+                className="input-field"
             />
+            </div>
+
+            <div className="input-field">
             <Input
                 type="password"
                 label="Password"
                 value={password}
                 onChange={(value) => setPassword(value)}
+                className="input-field"
             />
-            <AlertMessage message={errorMessage} />
-            <Button label="Войти" onClick={handleLogin} />
-            <Button label="Зарегистрироваться" onClick={handleRegister} />
+            </div>
+            <AlertMessage message={errorMessage}/>
+            <Button className="button" label="Войти" onClick={handleLogin}/>
+            <Button className="button" label="Зарегистрироваться" onClick={handleRegister}/>
         </div>
     );
 };
