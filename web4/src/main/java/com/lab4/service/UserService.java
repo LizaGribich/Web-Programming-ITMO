@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 @Stateless
 public class UserService {
@@ -15,14 +14,6 @@ public class UserService {
     @PersistenceContext
     private EntityManager entityManager;
 
-
-    private User findUserByUsernameAndPassword(String username, String password) {
-        TypedQuery<User> query = entityManager.createQuery(
-                "SELECT u FROM User u WHERE u.username = :username AND u.password = :password", User.class);
-        query.setParameter("username", username);
-        query.setParameter("password", password);
-        return query.getSingleResult();
-    }
 
     private boolean doesUsernameExist(String username) {
         Long count = entityManager.createQuery(
@@ -74,10 +65,7 @@ public class UserService {
     }
 
     public boolean validateСredentials(String username, String password) {
-        if (password == null || password.length() < 4 || username == null || username.length() < 4 ) {
-            return false;
-        }
-        return true;
+        return  !(password == null || password.length() < 4 || username == null || username.length() < 4 );
     }
 
 

@@ -18,11 +18,6 @@ const App = () => {
         }
     }, []);
 
-    useEffect(() => {
-        console.log('Токен обновлен: ' + token);
-    }, [token]);
-
-
     const handleLogin = (success, token) => {
         setIsLoggedIn(success);
         if (success) {
@@ -38,7 +33,6 @@ const App = () => {
         setToken(null);
         setLoginProcessed(false);
     };
-
 
     return (
         <Router basename="/web4">

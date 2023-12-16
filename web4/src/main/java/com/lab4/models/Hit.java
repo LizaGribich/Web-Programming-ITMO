@@ -3,8 +3,6 @@ package com.lab4.models;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Hit {
     private BigDecimal x;
@@ -75,13 +73,10 @@ public class Hit {
         BigDecimal halfR = r.divide(BigDecimal.valueOf(2));
 
         this.result =
-                // треугольник в верхнем левом углу
                 (x.compareTo(BigDecimal.ZERO) <= 0 && y.compareTo(BigDecimal.ZERO) >= 0 && y.compareTo(x.multiply(BigDecimal.valueOf(2)).add(r)) <= 0)
                         ||
-                        // четверть круга в верхнем правом углу
                         (x.compareTo(BigDecimal.ZERO) >= 0 && y.compareTo(BigDecimal.ZERO) <= 0 && (xSquare.add(ySquare).compareTo(halfR.pow(2)) <= 0))
                         ||
-                        // прямоугольник в нижнем левом углу
                         (x.compareTo(BigDecimal.ZERO) <= 0 && y.compareTo(BigDecimal.ZERO) <= 0 && x.compareTo(halfR.negate()) >= 0 && y.compareTo(r.negate()) >= 0);
 
         setCurrentTime();

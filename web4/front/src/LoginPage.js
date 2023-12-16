@@ -10,12 +10,11 @@ const LoginPage = ({onLogin}) => {
     const [errorMessage, setErrorMessage] = React.useState('');
 
     const showError = (newMessage) => {
-        setErrorMessage(''); // Сначала очистить сообщение
+        setErrorMessage('');
         setTimeout(() => {
-            setErrorMessage(newMessage); // Затем установить новое сообщение
-        }, 10); // Маленькая задержка, чтобы гарантировать, что React обновит состояние
+            setErrorMessage(newMessage);
+        }, 10);
     };
-
 
     const handleLogin = async () => {
         const response = await fetch('./api/auth/login', {
@@ -27,9 +26,8 @@ const LoginPage = ({onLogin}) => {
         });
 
         if (response.ok) {
-            const token_ = await response.text();
-            onLogin(true, token_);
-            console.log(token_);
+            const token = await response.text();
+            onLogin(true, token);
         } else {
             onLogin(false);
             showError('Неверный логин или пароль');
