@@ -64,7 +64,7 @@ public class UserService {
         }
     }
 
-    public boolean validateСredentials(String username, String password) {
+    public boolean validateCredentials(String username, String password) {
         return  !(password == null || password.length() < 4 || username == null || username.length() < 4 );
     }
 

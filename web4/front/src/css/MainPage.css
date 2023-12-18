@@ -35,14 +35,12 @@
 }
 
 
-/* Стили для планшетных устройств (ширина экрана от 835px до 1194px) */
 @media screen and (min-width: 835px) and (max-width: 1194px) {
     .main-page-container {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-/* Стили для мобильных устройств (ширина экрана < 835px) */
 @media screen and (max-width: 834px) {
     .main-page-container {
         grid-template-columns: 1fr;

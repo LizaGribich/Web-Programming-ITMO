@@ -77,7 +77,6 @@ const MainPage = ({token, onLogout}) => {
     };
 
     return (
-
         <div className="main-page-container">
             <div className="left-column">
                 <Area data={data}

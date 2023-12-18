@@ -17,7 +17,7 @@ public class UserController {
     @Inject
     private UserService userService;
 
-    private TokenService tokenService = new TokenService();
+    private final TokenService tokenService = new TokenService();
 
     @POST
     @Path("login")
@@ -37,7 +37,7 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(User user) {
-        if (!userService.validateСredentials(user.getUsername(), user.getPassword())) {
+        if (!userService.validateCredentials(user.getUsername(), user.getPassword())) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Bad credentials!").build();
         }
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());

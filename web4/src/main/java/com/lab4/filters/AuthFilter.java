@@ -15,7 +15,7 @@ import javax.ws.rs.ext.Provider;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthFilter implements ContainerRequestFilter {
 
-    private TokenService tokenService = new TokenService();
+    private final TokenService tokenService = new TokenService();
 
     @Override
     public void filter(ContainerRequestContext requestContext) {

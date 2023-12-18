@@ -47,7 +47,6 @@ h2 {
     background-color: #eecaf8;
 }
 
-/* Стили для планшетных устройств (ширина экрана от 835px до 1194px) */
 @media screen and (min-width: 835px) and (max-width: 1194px) {
     .input-field {
         width: 250px;
@@ -63,7 +62,6 @@ h2 {
     }
 }
 
-/* Стили для мобильных устройств (ширина экрана < 835px) */
 @media screen and (max-width: 834px) {
     .login-page {
         padding: 10px;

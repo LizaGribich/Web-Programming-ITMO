@@ -13,7 +13,7 @@ import java.util.Date;
 public class TokenService {
 
     private static final String ISSUER = "your-app";
-    private static final String SECRET_KEY = "secret"; // В продакшене используйте более сложный ключ!
+    private static final String SECRET_KEY = "secret";
 
     public String createToken(String username) {
         Date expiryDate = new Date(System.currentTimeMillis() + 3600 * 1000); // 1 час
